@@ -2,6 +2,7 @@ import { TodoItem } from './components/TodoItem/TodoItem.tsx';
 import './App.css'
 import type { TodoItemType } from "./shared/types.ts";
 import { useState } from "react";
+import { TodoForm } from './components/TodoForm/TodoForm.tsx';
 
 const mockTodos: TodoItemType[] = [{
   id: 1,
@@ -52,9 +53,14 @@ function App() {
   //    - добавьте <TodoForm onAdd={handleAddTodo} /> над списком задач
   // 5. Подумайте про крайние случаи: пустая строка, пробелы, очистка инпута после добавления.
 
+
+  const handleAddTodo = (newTodo: TodoItemType) => {
+    setTodos([...todos, newTodo]);
+  }
+
   return (
       <div className="todo-list">
-        {/* Сюда позже нужно добавить <TodoForm onAdd={handleAddTodo} /> */}
+        <TodoForm onAdd={handleAddTodo} />
         {todos.map((value) => (
             <TodoItem id={value.id} key={value.id} label={value.label} done={value.isChecked} onChange={handleTaskCheckedChange} />
         ))}
