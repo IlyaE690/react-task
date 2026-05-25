@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { TodoItemType } from '../../shared/types';
+import './TodoForm.css';
 
 type TodoFormProps = {
     onAdd: (todoItem: TodoItemType) => void
@@ -23,7 +24,6 @@ export function TodoForm({ onAdd }: TodoFormProps) {
         };
 
         onAdd(newTodo);
-
         setText('');
     };
 
@@ -34,17 +34,20 @@ export function TodoForm({ onAdd }: TodoFormProps) {
     };
 
     return (
-        <div>
-            <input
-                type="text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Введи задачу"
-            />
-            <button onClick={handleAdd}>
-                Добавить задачу
-            </button>
+        <div className="todo-form-container">
+            <div className="todo-form">
+                <input
+                    type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Введи задачу"
+                    className="todo-input"
+                />
+                <button onClick={handleAdd} className="add-button">
+                    Добавить задачу
+                </button>
+            </div>
         </div>
     );
 }
